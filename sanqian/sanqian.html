@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三千 - 王国唯一小皇帝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1d1d1f;
+            background-color: #ffffff;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        nav {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 16px 0;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        /* 主标题区域 */
+        .hero {
+            text-align: center;
+            padding: 120px 0 60px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 400;
+            color: #86868b;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            color: #86868b;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* 特点区域 */
+        .features {
+            padding: 100px 0;
+            background-color: #f5f5f7;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            font-size: 24px;
+            color: #86868b;
+            font-weight: 300;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-item h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 16px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+
+        /* 生涯区域 */
+        .era {
+            padding: 120px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .era:nth-child(even) {
+            background-color: #f5f5f7;
+        }
+
+        .era-content {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .era-title {
+            margin-bottom: 50px;
+        }
+
+        .era-title h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .era-title p {
+            font-size: 24px;
+            color: #86868b;
+            font-weight: 300;
+        }
+
+        .era-image {
+            width: 100%;
+            margin-bottom: 50px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .era-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .era-description {
+            font-size: 21px;
+            line-height: 1.5;
+            color: #1d1d1f;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 皇家成员区域 */
+        .royal-family {
+            padding: 120px 0;
+            background-color: #f5f5f7;
+        }
+
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .member-card {
+            background-color: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 260px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .member-info {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .member-info h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .member-info p {
+            font-size: 16px;
+            color: #86868b;
+        }
+
+        /* 粉丝团区域 */
+        .fans {
+            padding: 120px 0;
+        }
+
+        .fan-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .fan-card {
+            background-color: #f5f5f7;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* 页脚 */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #86868b;
+            border-top: 1px solid #d2d2d7;
+            background-color: #f5f5f7;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero h2 {
+                font-size: 24px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .section-title p {
+                font-size: 20px;
+            }
+            
+            .era-title h2 {
+                font-size: 36px;
+            }
+            
+            .era-title p {
+                font-size: 20px;
+            }
+            
+            .era-description {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">三千</a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">特点</a>
+                <a href="#stray" class="nav-link">流浪时期</a>
+                <a href="#naming" class="nav-link">赐名时期</a>
+                <a href="#illness" class="nav-link">口炎时期</a>
+                <a href="#toothless" class="nav-link">无牙时期</a>
+                <a href="#doggy" class="nav-link">收服狗狗</a>
+                <a href="#social" class="nav-link">小红书时期</a>
+                <a href="#family" class="nav-link">皇家成员</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主标题区域 -->
+    <section class="hero">
+        <div class="container">
+            <h1>三千</h1>
+            <h2>三千王国唯一小皇帝</h2>
+            <p>品种：狸白 · 注册名称：周骏眉 · 职务：王国统治者</p>
+            <img src="images/xiaohuangdi.JPG" alt="三千皇家肖像" class="hero-img">
+        </div>
+    </section>
+
+    <!-- 特点区域 -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>皇家特点</h2>
+                <p>精心设计，独一无二。</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🍫</div>
+                    <h3>好时巧克力鼻子</h3>
+                    <p>精致典雅的巧克力色鼻子，每一个细节都彰显皇家品质。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🐾</div>
+                    <h3>巧克力爪爪</h3>
+                    <p>匠心独具的巧克力色爪垫，触感细腻，行走无声。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">😁</div>
+                    <h3>没有牙</h3>
+                    <p>简约至上的革命性设计，创造前所未有的无牙笑容体验。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🐯</div>
+                    <h3>狸白</h3>
+                    <p>经典品种，尊贵血统的完美呈现，永恒的优雅。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 流浪时期 -->
+    <section class="era" id="stray">
+        <div class="container">
+            <div class="era-content">
+                <div class="era-title">
+                    <h2>流浪时期</h2>
+                    <p>命运的起点，坚韧的象征。</p>
+                </div>
+                <div class="era-image">
+                    <img src="images/liulang.JPG" alt="流浪时期的三千">
+                </div>
+                <div class="era-description">
+                    被黄鼠狼咬断尾巴依旧逃生存活。
+                    这段经历不仅是三千生命中的考验，更是他坚韧品格的证明。
+                    当所有希望似乎消失时，三千选择了继续前行。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 赐名时期 -->
+    <section class="era" id="naming">
+        <div class="container">
+            <div class="era-content">
+                <div class="era-title">
+                    <h2>赐名时期</h2>
+                    <p>身份的转变，新生的开始。</p>
+                </div>
+                <div class="era-image">
+                    <img src="/images/beiwo.JPG" alt="被赐名的三千">
+                </div>
+                <div class="era-description">
+                    被太后赐名三千，学会钻被窝。
+                    这一关键时刻标志着三千从流浪猫到皇室成员的华丽转身。
+                    凭借天赋异禀的被窝钻研技术，三千获得了"三千"这一尊贵名号，正式开启了他的皇家之路。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 口炎时期 -->
+    <section class="era" id="illness">
+        <div class="container">
+            <div class="era-content">
+                <div class="era-title">
+                    <h2>口炎时期</h2>
+                    <p>挑战与损失，成长的代价。</p>
+                </div>
+                <div class="era-image">
+                    <img src="/images/kouyan.JPG" alt="口炎时期的三千">
+                </div>
+                <div class="era-description">
+                    尿坏数千元的蚕丝被，创下个人最高物质损失记录。
+                    口炎时期是三千生命中的低谷，同时也是他最具标志性的历史时刻之一。
+                    这段经历虽然代价不菲，却成为王国历史上最为人津津乐道的轶事。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 无牙时期 -->
+    <section class="era" id="toothless">
+        <div class="container">
+            <div class="era-content">
+                <div class="era-title">
+                    <h2>无牙时期</h2>
+                    <p>重获新生，惊艳蜕变。</p>
+                </div>
+                <div class="era-image">
+                    <img src="/images/wuya.JPG" alt="无牙时期的三千">
+                </div>
+                <div class="era-description">
+                    治疗口炎拔牙，成功增重。
+                    无牙时期是三千健康与形象的革命性转变。
+                    失去了牙齿，却获得了更舒适的生活与独特的形象标识。
+                    这一勇敢决定不仅治愈了三千的痛苦，还意外创造了王国最具特色的皇家笑容。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 收服狗狗 -->
+    <section class="era" id="doggy">
+        <div class="container">
+            <div class="era-content">
+                <div class="era-title">
+                    <h2>收服狗狗</h2>
+                    <p>领导力的证明，王国的扩张。</p>
+                </div>
+                <div class="era-image">
+                    <img src="/images/qiangou.JPG" alt="三千与狗狗">
+                </div>
+                <div class="era-description">
+                    在24小时内将小黑猫狗狗收为小弟，展现超凡领导力。
+                    这一外交壮举展示了三千卓越的沟通能力与非凡魅力。
+                    从此，王国不仅拥有了忠诚的御前侍卫，三千的统治才能也得到了全面认可。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 小红书时期 -->
+    <section class="era" id="social">
+        <div class="container">
+            <div class="era-content">
+                <div class="era-title">
+                    <h2>小红书时期</h2>
+                    <p>数字时代，皇家影响力的扩展。</p>
+                </div>
+                <div class="era-image">
+                    <img src="/images/xiaohongshu.PNG" alt="小红书上的三千">
+                </div>
+                <div class="era-description">
+                    在太后的努力下，全网获得高达56名粉丝。小红书时期代表着三千王国与时俱进，拥抱数字化的决心。虽然粉丝数量精简，但每一位都是经过严格筛选的忠诚支持者，质量远胜于数量。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 皇家成员 -->
+    <section class="royal-family" id="family">
+        <div class="container">
+            <div class="section-title">
+                <h2>皇家成员</h2>
+                <p>王国的支柱，三千的家人。</p>
+            </div>
+            <div class="member-grid">
+                <div class="member-card">
+                    <div class="member-img">👑</div>
+                    <div class="member-info">
+                        <h3>邪恶太上皇</h3>
+                        <p>张拽屁</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-img">👸</div>
+                    <div class="member-info">
+                        <h3>可爱漂亮小太后</h3>
+                        <p>周硬气</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <div class="member-img">🐈‍⬛</div>
+                    <div class="member-info">
+                        <h3>御前侍卫三脚猫</h3>
+                        <p>狗狗</p>
+                        <p>三千唯一认证的小弟</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 粉丝团 -->
+    <section class="fans">
+        <div class="container">
+            <div class="section-title">
+                <h2>荣誉粉丝团</h2>
+                <p>最忠诚的支持者，三千的骄傲。</p>
+            </div>
+            <div class="fan-list">
+                <div class="fan-card">祝有肉</div>
+                <div class="fan-card">小弟</div>
+                <div class="fan-card">蕾子哥</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>三千王国 © 2025 版权所有。爪爪印章生效。</p>
+        </div>
+    </footer>
+</body>
+</html>
